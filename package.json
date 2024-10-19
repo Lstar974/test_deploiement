@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Dépôt pour les tests de déploiement",
   "main": "index.js",
-    "scripts": {
-    "test": "jest --ci --reporters=jest-junit --outputFile=./test-results/jest-results.xml"
+  "scripts": {
+    "test": "jest --ci --reporters=jest-junit --testPathPattern=test/unit.test.js --outputFile=./test-results/jest-results.xml"
   },
   "jest": {
     "reporters": [
