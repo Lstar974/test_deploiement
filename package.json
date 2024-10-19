@@ -4,10 +4,11 @@
   "description": "Dépôt pour les tests de déploiement",
   "main": "index.js",
   "scripts": {
-    "test": "jest --ci --reporters=jest-junit"
+    "test": "jest --ci --reporters=jest-junit --outputFile=./test-results/jest-results.xml"
   },
-  "dependencies": {
+  "devDependencies": {
     "jest": "^27.0.0",
-    "cypress": "^8.0.0"
+    "cypress": "^8.0.0",
+    "jest-junit": "^12.0.0"
   }
 }
