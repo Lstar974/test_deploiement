@@ -4,7 +4,7 @@
   "description": "Dépôt pour les tests de déploiement",
   "main": "index.js",
   "scripts": {
-    "test": "jest --ci --reporters=jest-junit --testPathPattern=test/unit.test.js --outputFile=./test-results/jest-results.xml"
+  "test": "mocha --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/mocha-results.xml"
   },
   "jest": {
     "reporters": [
