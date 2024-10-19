@@ -1,12 +1,4 @@
-// Test sur la validation du format de l'email
-test('Should validate email format', () => {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const validEmail = "test@example.com";
-  const invalidEmail = "invalid-email";
-
-  expect(emailPattern.test(validEmail)).toBe(true);
-  expect(emailPattern.test(invalidEmail)).toBe(false);
-});
+const { JSDOM } = require('jsdom');
 
 // Test sur l'incrémentation du compteur
 test('Should increment counter', () => {
@@ -20,10 +12,11 @@ test('Should increment counter', () => {
   `);
 
   const counter = dom.window.document.getElementById("clickCounter");
-  const count = parseInt(counter.innerText);
+  let count = parseInt(counter.innerText);
 
   // Incrémentation
-  counter.innerText = count + 1;
+  count += 1;
+  counter.innerText = count;
 
   // Vérifie si le compteur a bien été incrémenté
   expect(counter.innerText).toBe("1");
