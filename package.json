@@ -6,6 +6,18 @@
   "scripts": {
     "test": "jest --ci --reporters=jest-junit --outputFile=./test-results/jest-results.xml"
   },
+  "jest": {
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "./test-results",
+          "outputName": "jest-results.xml"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
     "jest": "^27.0.0",
     "cypress": "^8.0.0",
