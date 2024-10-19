@@ -1,0 +1,13 @@
+{
+  "name": "test_deploiement",
+  "version": "1.0.0",
+  "description": "Dépôt pour les tests de déploiement",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --ci --reporters=jest-junit"
+  },
+  "dependencies": {
+    "jest": "^27.0.0",
+    "cypress": "^8.0.0"
+  }
+}
