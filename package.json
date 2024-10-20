@@ -11,7 +11,7 @@
   "dependencies": {},
   "devDependencies": {
     "jest": "^27.0.6",
-    "jsdom": "^16.6.0"
+    "jsdom": "^16.6.0",
     "puppeteer": "^10.0.0"
   }
 }
