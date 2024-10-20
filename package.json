@@ -1,18 +1,20 @@
 {
   "name": "test_deploiement",
   "version": "1.0.0",
+  "description": "Test de déploiement",
+  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "node node_modules/jest/bin/jest.js",
+    "test:unit": "node node_modules/jest/bin/jest.js test/unit.test.js",
+    "test:integration": "node node_modules/jest/bin/jest.js test/integration.test.js"
   },
-  "dependencies": {
-    "jsdom": "^21.1.0",
-    "util": "^0.12.5"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "jest": "^29.5.0",
-    "jest-environment-jsdom": "^29.5.0"
+    "jest": "^27.0.6",
+    "jsdom": "^16.6.0",
+    "puppeteer": "^19.0.0"
   },
   "jest": {
-    "testEnvironment": "jest-environment-jsdom"
+    "testEnvironment": "node"
   }
 }
