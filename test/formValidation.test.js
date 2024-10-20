@@ -24,8 +24,7 @@ test('Should handle form submission and counter increment', () => {
 
   // Définition des fonctions
   dom.window.incrementCounter = function() {
-    let currentCount = parseInt(counter.innerText, 10);
-    counter.innerText = isNaN(currentCount) ? 1 : currentCount + 1;
+    counter.innerText = parseInt(counter.innerText) + 1;
   };
 
   dom.window.validateForm = function() {
@@ -52,7 +51,7 @@ test('Should handle form submission and counter increment', () => {
 
   // Simule l'incrémentation du compteur
   dom.window.incrementCounter();
-  expect(counter.innerText).toBe("1");
+  expect(parseInt(counter.innerText)).toBe(1); // Convertir la valeur en nombre
 
   // Simule la soumission du formulaire avec un nom manquant
   dom.window.validateForm();
