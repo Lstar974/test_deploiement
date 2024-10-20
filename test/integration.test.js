@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const path = require('path');
 const os = require('os');
 
@@ -9,6 +9,7 @@ beforeAll(async () => {
   const tmpDir = os.tmpdir();
   browser = await puppeteer.launch({
     headless: "new",
+    executablePath: '/usr/bin/google-chrome',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
