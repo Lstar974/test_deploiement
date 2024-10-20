@@ -6,9 +6,10 @@ let page;
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
-    headless: true,
+    headless: "new",
     executablePath: '/usr/bin/google-chrome',
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    ignoreDefaultArgs: ['--disable-extensions'],
   });
   page = await browser.newPage();
 });
