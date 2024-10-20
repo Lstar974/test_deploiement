@@ -1,3 +1,7 @@
+const { TextEncoder, TextDecoder } = require('util');
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
 const { JSDOM } = require('jsdom');
 
 test('Should handle form submission and counter increment', () => {
