@@ -32,7 +32,7 @@ describe('Fonctions de l\'application', () => {
     const counter = document.getElementById('clickCounter');
     counter.innerText = '0';
     incrementCounter();
-    expect(counter.innerText).toBe('1');
+    expect(Number(counter.innerText)).toBe(1);
   });
 
   test('validateForm retourne false pour un nom vide', () => {
