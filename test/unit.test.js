@@ -10,18 +10,16 @@ const path = require('path');
 const html = fs.readFileSync(path.resolve(__dirname, '../tests.html'), 'utf8');
 
 // Configurer JSDOM
-const dom = new JSDOM(html, { runScripts: 'dangerously' });
+const dom = new JSDOM(html, { runScripts: 'dangerously', resources: 'usable' });
 global.document = dom.window.document;
 global.window = dom.window;
 
-// Ajouter les fonctions du script dans le contexte global
-const script = document.createElement('script');
-script.textContent = document.querySelector('script').textContent;
-document.body.appendChild(script);
-
-// Rendre les fonctions globales
-global.incrementCounter = window.incrementCounter;
-global.validateForm = window.validateForm;
+// Attendre que le DOM soit chargé
+dom.window.document.addEventListener('DOMContentLoaded', () => {
+  // Rendre les fonctions globales
+  global.incrementCounter = dom.window.incrementCounter;
+  global.validateForm = dom.window.validateForm;
+});
 
 // Fonction pour réinitialiser le DOM après chaque test
 afterEach(() => {
