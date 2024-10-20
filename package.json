@@ -1,31 +1,12 @@
 {
   "name": "test_deploiement",
   "version": "1.0.0",
-  "description": "Dépôt pour les tests de déploiement",
+  "description": "Projet de déploiement avec tests",
   "main": "index.js",
-{
   "scripts": {
     "test": "jest"
   },
   "devDependencies": {
     "jest": "^28.0.0"
-  }
-}
-  "jest": {
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "outputDirectory": "./test-results",
-          "outputName": "jest-results.xml"
-        }
-      ]
-    ]
-  },
-  "devDependencies": {
-    "jest": "^27.0.0",
-    "cypress": "^8.0.0",
-    "jest-junit": "^12.0.0"
   }
 }
