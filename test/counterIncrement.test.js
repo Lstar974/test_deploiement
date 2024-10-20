@@ -16,9 +16,10 @@ test('Should increment the counter when button is clicked', () => {
 
   const counter = dom.window.document.getElementById("clickCounter");
 
-  // Simule la fonction d'incrémentation
+  // Simule la fonction d'incrémentation avec vérification
   dom.window.incrementCounter = function() {
-    counter.innerText = parseInt(counter.innerText) + 1;
+    let currentCount = parseInt(counter.innerText, 10);
+    counter.innerText = isNaN(currentCount) ? 1 : currentCount + 1;
   };
 
   // Incrémentation simulée
