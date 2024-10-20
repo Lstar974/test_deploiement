@@ -22,10 +22,10 @@ test('Should handle form submission and counter increment', () => {
   const counter = dom.window.document.getElementById("clickCounter");
   const error = dom.window.document.getElementById("error");
 
-  // Définition des fonctions dans l'environnement JSDOM
+  // Définition des fonctions
   dom.window.incrementCounter = function() {
-    let currentCount = parseInt(counter.innerText);
-    counter.innerText = isNaN(currentCount) ? 0 : currentCount + 1;
+    let currentCount = parseInt(counter.innerText, 10);
+    counter.innerText = isNaN(currentCount) ? 1 : currentCount + 1;
   };
 
   dom.window.validateForm = function() {
