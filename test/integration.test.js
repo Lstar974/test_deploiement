@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const path = require('path');
 const os = require('os');
 
@@ -6,16 +6,14 @@ let browser;
 let page;
 
 beforeAll(async () => {
-  const tmpDir = '/tmp/puppeteer_user_data';
+  const tmpDir = os.tmpdir();
   browser = await puppeteer.launch({
     headless: "new",
-    executablePath: '/usr/bin/google-chrome',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      `--user-data-dir=${tmpDir}`
+      `--user-data-dir=${tmpDir}/puppeteer_user_data`
     ],
-    ignoreDefaultArgs: ['--disable-extensions'],
   });
   page = await browser.newPage();
 });
