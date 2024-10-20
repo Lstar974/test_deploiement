@@ -12,6 +12,10 @@ const html = fs.readFileSync(path.resolve(__dirname, '../tests.html'), 'utf8');
 // Simulez un environnement DOM
 document.body.innerHTML = html;
 
+const script = document.createElement('script');
+script.textContent = document.querySelector('script').textContent;
+document.body.appendChild(script);
+
 // Fonction pour réinitialiser le DOM après chaque test
 afterEach(() => {
   document.body.innerHTML = html;
