@@ -2,7 +2,9 @@
   "name": "test_deploiement",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+  "test:unit": "jest test/unit.test.js",
+  "test:integration": "jest test/integration.test.js",
+  "test": "npm run test:unit && npm run test:integration"
   },
   "dependencies": {
     "jsdom": "^21.1.0",
