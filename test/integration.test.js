@@ -6,20 +6,19 @@ let browser;
 let page;
 
 beforeAll(async () => {
-  const tmpDir = os.tmpdir();
+  const tmpDir = '/tmp/puppeteer_user_data';
   browser = await puppeteer.launch({
     headless: "new",
     executablePath: '/usr/bin/google-chrome',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      `--user-data-dir=${tmpDir}/puppeteer_user_data`
+      `--user-data-dir=${tmpDir}`
     ],
     ignoreDefaultArgs: ['--disable-extensions'],
   });
   page = await browser.newPage();
 });
-
 afterAll(async () => {
   if (browser) {
     await browser.close();
