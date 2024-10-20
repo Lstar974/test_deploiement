@@ -3,22 +3,29 @@ global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 
 const { JSDOM } = require('jsdom');
-
-// Importez les fonctions à tester
 const fs = require('fs');
 const path = require('path');
+
+// Lire le contenu du fichier HTML
 const html = fs.readFileSync(path.resolve(__dirname, '../tests.html'), 'utf8');
 
-// Simulez un environnement DOM
-document.body.innerHTML = html;
+// Configurer JSDOM
+const dom = new JSDOM(html, { runScripts: 'dangerously' });
+global.document = dom.window.document;
+global.window = dom.window;
 
+// Ajouter les fonctions du script dans le contexte global
 const script = document.createElement('script');
 script.textContent = document.querySelector('script').textContent;
 document.body.appendChild(script);
 
+// Rendre les fonctions globales
+global.incrementCounter = window.incrementCounter;
+global.validateForm = window.validateForm;
+
 // Fonction pour réinitialiser le DOM après chaque test
 afterEach(() => {
-  document.body.innerHTML = html;
+  dom.window.document.body.innerHTML = html;
 });
 
 // Tests unitaires
@@ -34,20 +41,26 @@ describe('Fonctions de l\'application', () => {
     document.getElementById('name').value = '';
     document.getElementById('email').value = 'test@example.com';
     expect(validateForm()).toBe(false);
-    expect(document.getElementById('error').innerText).toContain('Name is required');
+    const errorElement = document.getElementById('error');
+    expect(errorElement).not.toBeNull();
+    expect(errorElement.innerText).toContain('Name is required');
   });
 
   test('validateForm retourne false pour un email invalide', () => {
     document.getElementById('name').value = 'John Doe';
     document.getElementById('email').value = 'invalid-email';
     expect(validateForm()).toBe(false);
-    expect(document.getElementById('error').innerText).toContain('Invalid email format');
+    const errorElement = document.getElementById('error');
+    expect(errorElement).not.toBeNull();
+    expect(errorElement.innerText).toContain('Invalid email format');
   });
 
   test('validateForm retourne true pour des entrées valides', () => {
     document.getElementById('name').value = 'John Doe';
     document.getElementById('email').value = 'john@example.com';
     expect(validateForm()).toBe(true);
-    expect(document.getElementById('error').innerText).toBe('');
+    const errorElement = document.getElementById('error');
+    expect(errorElement).not.toBeNull();
+    expect(errorElement.innerText).toBe('');
   });
 });
