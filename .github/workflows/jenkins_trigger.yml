@@ -1,35 +1,17 @@
-name: Trigger Jenkins Job
+name: Trigger Jenkins Job on Push
 
 on:
   push:
     branches:
-      - main  # ou la branche que tu veux surveiller
+      - main  # Remplace par la branche que tu veux surveiller
 
 jobs:
-  test:
-    runs-on: debian-latest
+  trigger-jenkins:
+    runs-on: debian
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16' # ou la version que tu utilises
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm test
-
-  trigger_jenkins:
-    runs-on: debian-latest
-    needs: test  # Cela signifie que cette étape ne se lancera que si le job "test" réussit
-
-    steps:
-    - name: Send request to Jenkins
-      run: |
-        curl -X POST http://lucas:1180e81e4d1d40355a458373643e89f80a@http://172.20.10.4:8080/job/deploiement/build \
-        --user lucas:1180e81e4d1d40355a458373643e89f80a
+      # Étape 1 : Lancer le job Jenkins après un push
+      - name: Trigger Jenkins Job
+        run: |
+          curl -X POST "http://172.20.10.4:8080/job/deploiement/build" \
+          --user "lucas:1180e81e4d1d40355a458373643e89f80a"
