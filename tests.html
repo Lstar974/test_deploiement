@@ -26,8 +26,8 @@
             }
           
             errorElement.innerText = errorMsg; // Toujours mettre à jour le texte de l'élément d'erreur
-            return true; // Erreur : retourne toujours true, même s'il y a des erreurs
-        }
+            return errorMsg === ""; // Retourne true si pas d'erreur, false sinon
+          }
     </script>
 </head>
 <body>
