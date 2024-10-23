@@ -13,5 +13,5 @@ jobs:
       # Étape 1 : Lancer le job Jenkins après un push
       - name: Trigger Jenkins Job
         run: |
-          curl -X POST "http://172.20.10.4:8080/job/deploiement/build" \
+          curl -X POST "http://172.20.10.3:8080/job/deploiement/build" \
           --user "lucas:1180e81e4d1d40355a458373643e89f80a"
